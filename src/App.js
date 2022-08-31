@@ -12,6 +12,7 @@ class App extends React.Component {
       lon: ''
     }
   }
+  
 
   getWeatherData = async (event) => {
     event.preventDefault();
@@ -22,15 +23,17 @@ class App extends React.Component {
     try {
       const result = await axios.get(url);
       this.setState({
-        city_name: result.name,
-        link: result.data.url,
+        city_name: result.data.city_name,
         lat: result.data.lat,
         lon: result.data.lon
       })
-
+      console.log(this.state.city_name);
+      console.log(this.state.link);
+      console.log('in try');
     }
     catch
     {
+      console.log('Error')
       alert('Error')
     }
   }
@@ -45,8 +48,9 @@ class App extends React.Component {
           <button type='submit'>Get Data</button>
         </form>
 
-        <p>{this.state.name}</p>
-        <p>{this.state.link}</p>
+        <p>{this.state.city_name}</p>
+        <p>{this.state.lat}</p>
+        <p>{this.state.lon}</p>
       </div>
     )
   }
